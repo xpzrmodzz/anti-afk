@@ -1,4 +1,24 @@
--- Supprimer les anciens GUI s'ils existent
+-- NotificationService
+local NotificationService = game:GetService("NotificationService")
+
+-- Crée une notification
+local function showNotification()
+    local notification = NotificationService:CreateNotification(
+        "script by C.N/FRITE",
+        "Script by C.N/FRITE",
+        "rbxassetid://11930122343" -- Icon asset ID
+    )
+    notification.Duration = 5 -- Durée en secondes
+    notification.Style = Enum.NotificationStyle.RobloxRound -- Style de notification
+    notification.Position = UDim2.new(1, -10, 1, -10) -- Position de la notification
+    notification.Button1 = "OK" -- Texte du bouton
+    notification.Button1Click:Connect(function()
+        print("Button 1 clicked!")
+    end)
+    notification:Show()
+end
+
+-- Supprime les anciens GUI s'ils existent
 local existingGui = game.CoreGui:FindFirstChild("AntiAFKGui")
 if existingGui then
     existingGui:Destroy()
@@ -76,4 +96,7 @@ game:GetService('Players').LocalPlayer.Idled:Connect(function()
     ab.Text = "LOL you sus bro"
     wait(2)
     ab.Text = "C.N ON TOP"
+    
+    -- Afficher une notification après la mise à jour du texte
+    showNotification()
 end)
